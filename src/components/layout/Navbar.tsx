@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react";
-import { Link, Button, Dropdown,Label } from "@heroui/react";
+import { Link, Button } from "@heroui/react";
 import logoImg from "@/assets/headerLogo.png"
 import Image from "next/image";
+import NavLink from "./NavLink";
 
 const Navbar = ()=> {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,18 +50,18 @@ const Navbar = ()=> {
         </div>
         <ul className="hidden items-center gap-4 md:flex">
           <li>
-            <Link href="#">Home</Link>
+            <NavLink href="/" className="text-white">Home</NavLink>
           </li>
           <li>
-            <Link href="#" className="font-medium text-accent" aria-current="page">
+            <NavLink href="/products" className="text-white" >
               Products
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link href="#">About</Link>
+            <NavLink href="/about"  className="text-white" >About</NavLink>
           </li>
           <li>
-            <Link href="#">Contact</Link>
+            <NavLink href="/contact"  className="text-white" >Contact</NavLink>
           </li>
         </ul>
         <div className="hidden items-center gap-4 md:flex">
@@ -69,27 +70,21 @@ const Navbar = ()=> {
         </div>
       </header>
       {isMenuOpen && (
-        <div className="w-50 absolute top-[calc(100%+8px)] left-4 right-4 z-50 lg:hidden rounded-xl border border-neutral/10 bg-white/40 backdrop-blur-sm p-2 shadow-lg transition-all duration-300 ease-out">
+        <div className="w-50 absolute top-[calc(100%+8px)] left-4 right-4 z-50 lg:hidden rounded-xl border border-white/10  bg-[#0f172a] backdrop-blur-md p-2 shadow-2xl transition-all duration-300 ease-out">
           <ul className="flex flex-col gap-2 p-4">
             <li>
-              <Link href="#" className="block py-2">
-                Home
-              </Link>
+              <NavLink href="/" onClick={()=> setIsMenuOpen(false)} className="text-neutral-900">Home</NavLink>
             </li>
             <li>
-              <Link href="#" className="block py-2 font-medium text-accent">
-                Dashboard
-              </Link>
+              <NavLink href="/products" onClick={()=>setIsMenuOpen(false)} className="text-neutral-900">
+                Products
+              </NavLink>
             </li>
             <li>
-              <Link href="#" className="block py-2">
-                About
-              </Link>
+              <NavLink href="/about" onClick={()=>setIsMenuOpen(false)} className="text-neutral-900">About</NavLink>
             </li>
             <li>
-              <Link href="#" className="block py-2">
-                Contact
-              </Link>
+              <NavLink href="/contact" onClick={()=>setIsMenuOpen(false)} className="text-neutral-900">Contact</NavLink>
             </li>
           </ul>
         </div>
