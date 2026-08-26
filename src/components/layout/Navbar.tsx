@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link, Button, Dropdown,Label } from "@heroui/react";
+import logoImg from "@/assets/headerLogo.png"
+import Image from "next/image";
 
 const Navbar = ()=> {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +22,7 @@ const Navbar = ()=> {
             <svg
               className="h-6 w-6"
               fill="none"
-              stroke="currentColor"
+              stroke="#fff"
               viewBox="0 0 24 24"
             >
               {isMenuOpen ? (
@@ -41,21 +43,24 @@ const Navbar = ()=> {
             </svg>
           </button>
           <div className="flex items-center gap-3">
-            {/* <Logo /> */}
-            <p className="font-bold">ACME</p>
+            <Image src={logoImg} alt={"StoreFront"} width={40} height={40}/>
+            <p className="font-bold text-xl text-white">Store<span className="text-[#4f46e5] ">Front</span></p>
           </div>
         </div>
         <ul className="hidden items-center gap-4 md:flex">
           <li>
-            <Link href="#">Features</Link>
+            <Link href="#">Home</Link>
           </li>
           <li>
             <Link href="#" className="font-medium text-accent" aria-current="page">
-              Dashboard
+              Products
             </Link>
           </li>
           <li>
-            <Link href="#">Pricing</Link>
+            <Link href="#">About</Link>
+          </li>
+          <li>
+            <Link href="#">Contact</Link>
           </li>
         </ul>
         <div className="hidden items-center gap-4 md:flex">
@@ -64,11 +69,11 @@ const Navbar = ()=> {
         </div>
       </header>
       {isMenuOpen && (
-        <div className="border-t border-separator md:hidden">
+        <div className="w-50 absolute top-[calc(100%+8px)] left-4 right-4 z-50 lg:hidden rounded-xl border border-neutral/10 bg-white/40 backdrop-blur-sm p-2 shadow-lg transition-all duration-300 ease-out">
           <ul className="flex flex-col gap-2 p-4">
             <li>
               <Link href="#" className="block py-2">
-                Features
+                Home
               </Link>
             </li>
             <li>
@@ -78,14 +83,13 @@ const Navbar = ()=> {
             </li>
             <li>
               <Link href="#" className="block py-2">
-                Pricing
+                About
               </Link>
             </li>
-            <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
+            <li>
               <Link href="#" className="block py-2">
-                Login
+                Contact
               </Link>
-              <Button className="w-full">Sign Up</Button>
             </li>
           </ul>
         </div>
