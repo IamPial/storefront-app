@@ -1,17 +1,18 @@
 "use client"
 
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link, Button, Badge } from "@heroui/react";
 import logoImg from "@/assets/headerLogo.png"
 import Image from "next/image";
 import NavLink from "./NavLink";
+import {Heart, ShoppingBag } from "lucide-react";
 
 const Navbar = ()=> {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-[#0f172a] backdrop-blur-lg">
-      <header className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+      <header className="mx-auto flex h-16 container items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <button
             className="md:hidden"
@@ -64,9 +65,21 @@ const Navbar = ()=> {
             <NavLink href="/contact"  className="text-white" >Contact</NavLink>
           </li>
         </ul>
-        <div className="hidden items-center gap-4 md:flex">
-          <Link href="#">Login</Link>
-          <Button>Sign Up</Button>
+        <div className="flex items-center gap-4 ">
+          <Link href="/cart">
+           <Button className="bg-slate-700/40"><ShoppingBag className="text-white" />
+           <Badge color="danger" className="border-0" size="sm">
+            5
+          </Badge>
+        </Button>
+          </Link>
+          <Link href="/wishlist">
+          <Button className="bg-slate-700/40"><Heart className="text-white"/>
+           <Badge color="danger" className="border-0" size="sm">
+            5
+          </Badge>
+          </Button>
+          </Link>
         </div>
       </header>
       {isMenuOpen && (
