@@ -51,7 +51,7 @@ const handleAddToCart = () => {
     return;
   }
 
-  addToCart(product);
+  addToCart(product, quantity);
   toast.success("Added item to the Cart", {
     style: { color: "#00c950" },
   });
@@ -211,12 +211,16 @@ const isFavorite = isInWishlist(product.id)
             <div className="space-y-4 pt-4">
               <div className="flex gap-3">
                 <button
-                  disabled={!product.inStock}
-                  className="flex-1 bg-[#0f172a]/80 hover:bg-[#0f172a] disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-2xl flex items-center justify-center gap-2 text-xs sm:text-sm transition-all  active:scale-98"
-                  onClick={handleAddToCart}
+                onClick={handleAddToCart}
+                disabled={isExistingInCart || !product.inStock}
+                className={`flex-1 font-semibold py-3 px-6 rounded-2xl flex items-center justify-center gap-2 text-xs sm:text-sm transition-all ${
+                    isExistingInCart
+                    ? "bg-green-600 text-white cursor-not-allowed opacity-90"
+                    : "bg-[#0f172a] hover:bg-slate-800 text-white active:scale-98"
+                }`}
                 >
-                  <ShoppingBag className="w-4 h-4" />
-                  {product.inStock ? "Add to Cart" : "Out of Stock"}
+                <ShoppingBag className="w-4 h-4" />
+                {isExistingInCart ? "Already in Cart" : product.inStock ? "Add to Cart" : "Out of Stock"}
                 </button>
                 
                 <button
