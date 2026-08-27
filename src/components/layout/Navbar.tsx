@@ -6,8 +6,12 @@ import logoImg from "@/assets/headerLogo.png"
 import Image from "next/image";
 import NavLink from "./NavLink";
 import {Heart, ShoppingBag } from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishListContext";
 
 const Navbar = ()=> {
+  const {cart} = useCart()
+  const {wishlist} = useWishlist()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -71,17 +75,17 @@ const Navbar = ()=> {
           </li>
         </ul>
         <div className="flex items-center gap-4 ">
-          <Link href="/cart">
-           <Button className="bg-slate-700/40"><ShoppingBag className="text-white" />
-           <Badge color="danger" className="border-0" size="sm">
-            5
+          <Link href="/carts">
+           <Button  className="bg-slate-700/40"><ShoppingBag className="text-white" />
+           <Badge  className={`border-0 ${cart.length == 0 ? "bg-transparent": "bg-red-500"} text-white`} size="sm">
+              {cart.length == 0 ? "": cart.length}
           </Badge>
         </Button>
           </Link>
-          <Link href="/wishlist">
+          <Link href="/wishlists">
           <Button className="bg-slate-700/40"><Heart className="text-white"/>
-           <Badge color="danger" className="border-0" size="sm">
-            5
+           <Badge className={`border-0 ${wishlist.length == 0 ? "bg-transparent": "bg-red-500"} text-white`} size="sm">
+            {wishlist.length == 0 ? "": wishlist.length}
           </Badge>
           </Button>
           </Link>
