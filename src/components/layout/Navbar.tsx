@@ -44,10 +44,10 @@ const Navbar = ()=> {
               )}
             </svg>
           </button>
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 no-underline">
             <Image src={logoImg} alt={"StoreFront"} width={40} height={40}/>
             <p className="font-bold text-xl text-white">Store<span className="text-[#4f46e5] ">Front</span></p>
-          </div>
+          </Link>
         </div>
         <ul className="hidden items-center gap-4 md:flex">
           <li>
