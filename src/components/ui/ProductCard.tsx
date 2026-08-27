@@ -28,7 +28,7 @@ const cardVariants: Variants = {
   },
   hover: {
     y: -8,
-    transition: { type: "spring", stiffness: 300, damping: 12 },
+    transition: { type: "spring", stiffness: 150, damping: 12 },
   },
 };
 
@@ -49,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <motion.div
       variants={cardVariants}
       whileHover="hover"
-      className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col group"
+      className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col group"
     >
       {/* Image & Badges */}
       <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -105,7 +105,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <motion.button
             whileTap={{ scale: 0.92 }}
             className="bg-gray-900 dark:bg-white text-white dark:text-gray-950 p-1 rounded-xl px-3 py-2 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors font-semibold"
-
           >
             <Link href={`/products/${product.slug}`} >
             Details
