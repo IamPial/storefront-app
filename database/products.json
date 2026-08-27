@@ -1,0 +1,98 @@
+[
+  {
+    "id": "sw-101",
+    "title": "Ultra Smartwatch Pro v2",
+    "slug": "ultra-smartwatch-pro-v2",
+    "price": 4500,
+    "originalPrice": 5500,
+    "image": "https://i.ibb.co.com/S4gNsNyH/smartwatch.avif",
+    "category": "Smartwatches",
+    "rating": 4.8,
+    "inStock": true,
+    "tag": "Sale"
+  },
+  {
+    "id": "sw-102",
+    "title": "Fitness Tracker Sport Edition",
+    "slug": "fitness-tracker-sport-edition",
+    "price": 3500,
+    "originalPrice": null,
+    "image": "https://i.ibb.co.com/9kdKKPy3/fitness-tracker.jpg",
+    "category": "Smartwatches",
+    "rating": 4.6,
+    "inStock": true,
+    "tag": "Regular"
+  },
+  {
+    "id": "sa-201",
+    "title": "Studio Wireless Headphones",
+    "slug": "studio-wireless-headphones",
+    "price": 8500,
+    "originalPrice": 10500,
+    "image": "https://i.ibb.co.com/GQ57MLnN/headphone.avif",
+    "category": "Studio Audio",
+    "rating": 4.9,
+    "inStock": true,
+    "tag": "Top Rated"
+  },
+  {
+    "id": "sa-202",
+    "title": "Pro Studio Condenser Microphone",
+    "slug": "pro-studio-condenser-microphone",
+    "price": 7500,
+    "originalPrice": null,
+    "image": "https://i.ibb.co.com/mVk41GMm/earbuds.avif",
+    "category": "Studio Audio",
+    "rating": 4.7,
+    "inStock": false,
+    "tag": "Out of Stock"
+  },
+  {
+    "id": "pd-301",
+    "title": "4K Precision Aerial Drone",
+    "slug": "4k-precision-aerial-drone",
+    "price": 24500,
+    "originalPrice": 28000,
+    "image": "https://i.ibb.co.com/QFL4ZLSy/aerial-drone.avif",
+    "category": "Precision Drones",
+    "rating": 5.0,
+    "inStock": true,
+    "tag": "Offer"
+  },
+  {
+    "id": "pd-302",
+    "title": "Compact Mini Drone HD",
+    "slug": "compact-mini-drone-hd",
+    "price": 14500,
+    "originalPrice": null,
+    "image": "https://i.ibb.co.com/9HRx8BDR/mini-drone.avif",
+    "category": "Precision Drones",
+    "rating": 4.5,
+    "inStock": true,
+    "tag": "New Arrival"
+  },
+  {
+    "id": "kb-401",
+    "title": "RGB Mechanical Gaming Keyboard",
+    "slug": "rgb-mechanical-gaming-keyboard",
+    "price": 3800,
+    "originalPrice": 4800,
+    "image": "https://i.ibb.co.com/dsPHkN2q/mechanical-keyboard.jpg",
+    "category": "Keyboards",
+    "rating": 4.8,
+    "inStock": true,
+    "tag": "Hot Deal"
+  },
+  {
+    "id": "kb-402",
+    "title": "Wireless Minimalist Keyboard",
+    "slug": "wireless-minimalist-keyboard",
+    "price": 3900,
+    "originalPrice": null,
+    "image": "https://i.ibb.co.com/tRLsd8p/gaming-keyboard.avif",
+    "category": "Keyboards",
+    "rating": 4.7,
+    "inStock": true,
+    "tag": "Best Seller"
+  }
+]
