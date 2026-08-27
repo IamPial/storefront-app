@@ -1,4 +1,5 @@
 import Banner from "@/components/homepage/Banner";
+import CategorySection from "@/components/homepage/CategorySection";
 import FeaturedSection from "@/components/homepage/FeaturedSection";
 
 const  Home = ()=> {
@@ -6,6 +7,7 @@ const  Home = ()=> {
     <div>
       <Banner/>
       <FeaturedSection/>
+      <CategorySection/>
     </div>
   );
 }
