@@ -6,16 +6,22 @@ import Link from "next/link";
 import { Star, Heart, ShoppingBag, ArrowLeft, ShieldCheck, Truck, RotateCcw, CheckCircle2 } from "lucide-react";
 import { getAllProducts } from "@/lib/api/products"; 
 import { Product } from "@/components/ui/ProductCard";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishListContext";
+import { toast } from "sonner";
 
 const ProductDetailsPage=({ params }: { params: Promise<{ slug: string }> })=> {
   const { slug } = use(params);
-
+  const { cart, addToCart } = useCart()
+  const {addToWishlist, isInWishlist} = useWishlist()
+  
+  
   const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
-
   const products = getAllProducts();
   const product: Product | undefined = products.find((p) => p.slug === slug);
 
+
+   //   empty message
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
@@ -27,15 +33,51 @@ const ProductDetailsPage=({ params }: { params: Promise<{ slug: string }> })=> {
     );
   }
 
+  // calculate products discount 
   const hasDiscount = Boolean(product.originalPrice && product.originalPrice > product.price);
   const discountPercentage = hasDiscount
-    ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
-    : 0;
+  ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
+  : 0;
+
+  
+  
+//for checking this item is already into cart have or not yet 
+ const isExistingInCart = cart.some((item) => item.id === product.id);
+
+//handle AddToCart 
+const handleAddToCart = () => {
+  if (isExistingInCart){
+    toast.error("Already in Cart") 
+    return;
+  }
+
+  addToCart(product);
+  toast.success("Added item to the Cart", {
+    style: { color: "#00c950" },
+  });
+};
+    
+    
+//for preventing added single item multiple in wishlist
+const isFavorite = isInWishlist(product.id)
+
+//handleWishList
+ const handleWishList = ()=>{
+    if (isFavorite) {
+    toast.error("Already in Wishlist!");
+    return;
+  }
+    addToWishlist(product)
+    toast.success("Added item to the Wishlist", {
+        style: {
+          color: "#00c950",
+      },
+    }
+)}
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto space-y-6">
-        
+      <div className="max-w-6xl mx-auto space-y-6">    
         {/* Back Button */}
         <Link
           href="/products"
@@ -171,20 +213,18 @@ const ProductDetailsPage=({ params }: { params: Promise<{ slug: string }> })=> {
                 <button
                   disabled={!product.inStock}
                   className="flex-1 bg-[#0f172a]/80 hover:bg-[#0f172a] disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-2xl flex items-center justify-center gap-2 text-xs sm:text-sm transition-all  active:scale-98"
+                  onClick={handleAddToCart}
                 >
                   <ShoppingBag className="w-4 h-4" />
                   {product.inStock ? "Add to Cart" : "Out of Stock"}
                 </button>
                 
                 <button
-                  onClick={() => setIsWishlisted(!isWishlisted)}
-                  className={`p-3 rounded-2xl border transition-all flex items-center justify-center ${
-                    isWishlisted
-                      ? "border-red-200 bg-red-50 text-red-500 dark:bg-red-950/30 dark:border-red-900"
-                      : "border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
-                  }`}
+                  onClick={handleWishList}
+                  className={`p-3 rounded-2xl border transition-all flex items-center justify-center border-red-200 bg-red-50 text-red-500      
+                  `}
                 >
-                  <Heart className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`} />
+                  <Heart className={`w-5 h-5 `} />
                 </button>
               </div>
 
@@ -202,9 +242,7 @@ const ProductDetailsPage=({ params }: { params: Promise<{ slug: string }> })=> {
                   <span>Easy Return</span>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
