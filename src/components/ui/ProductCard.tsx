@@ -52,12 +52,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col group"
     >
       {/* Image & Badges */}
-      <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+      <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 ">
         <Image
           src={product.image}
           alt={product.title}
           fill
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
         />
         {hasDiscount ? (
           <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-md z-10 shadow-sm">
