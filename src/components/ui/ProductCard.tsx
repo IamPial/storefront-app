@@ -3,9 +3,8 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star} from "lucide-react";
 import Image from "next/image";
-import { Button } from "@heroui/react";
 
 export interface Product {
   id: string;
