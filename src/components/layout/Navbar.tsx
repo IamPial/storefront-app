@@ -63,7 +63,7 @@ const Navbar = ()=> {
             </NavLink>
           </li>
           <li>
-            <NavLink href="/my-orders" className="text-white" >
+            <NavLink href="/orders" className="text-white" >
               My Orders
             </NavLink>
           </li>
@@ -103,7 +103,7 @@ const Navbar = ()=> {
               </NavLink>
             </li>
             <li>
-              <NavLink href="/my-orders" onClick={()=>setIsMenuOpen(false)} className="text-neutral-900">
+              <NavLink href="/orders" onClick={()=>setIsMenuOpen(false)} className="text-neutral-900">
                 My Orders
               </NavLink>
             </li>
