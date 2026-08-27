@@ -5,6 +5,8 @@ import { motion, Variants } from "framer-motion";
 import { Search, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { getAllProducts } from "@/lib/api/products";
 import { ProductCard } from "@/components/ui/ProductCard";
+import PaginationSection from "../../components/ui/PaginationSection"
+
 
 interface Product {
   id: string;
@@ -29,6 +31,9 @@ const containerVariants: Variants = {
 
 export default function ProductsPage() {
   const products: Product[] = getAllProducts();
+
+   // Pagination States
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Filter States
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,6 +84,22 @@ export default function ProductsPage() {
     setMaxPrice("");
     setSortBy("default");
   };
+
+
+   // Pagination
+  const ITEMS_PER_PAGE = 6; 
+
+
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
+
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage, ITEMS_PER_PAGE]);
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-10 px-4 sm:px-6 lg:px-8">
@@ -200,17 +221,27 @@ export default function ProductsPage() {
             </div>
 
             {/* Products Grid / Empty State */}
-            {filteredProducts.length > 0 ? (
-              <motion.div
+         {filteredProducts.length > 0 ? (
+          <div className="space-y-8">
+
+             <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="grid grid-cols-1  sm:grid sm:z-0 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
               >
-                {filteredProducts.map((product) => (
+                {paginatedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </motion.div>
+
+
+            <PaginationSection
+              total={totalPages}
+              page={currentPage}
+              onChange={(newPage) => setCurrentPage(newPage)}
+                        />
+              </div>
             ) : (
               /* Empty State */
               <div className="text-center py-20 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3">
