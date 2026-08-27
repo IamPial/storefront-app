@@ -5,14 +5,41 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { toast } from "sonner";
 
-const CheckoutPage=()=> {
+const CheckoutPage = () => {
   const { cart, total, clearCart } = useCart();
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Form input state
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
-  //handle submit
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // handle submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    //make order
+    const newOrder = {
+      id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
+      date: new Date().toISOString().split("T")[0],
+      status: "Pending",
+      totalAmount: total,
+      shippingAddress: formData.address,
+      paymentMethod: "Cash on Delivery",
+      items: cart,
+    };
+
+    //store the data into localstorage
+    const existingOrders = JSON.parse(localStorage.getItem("my_orders") || "[]");
+    localStorage.setItem("my_orders", JSON.stringify([newOrder, ...existingOrders]));
+
     toast.success("Order Placed Successfully!");
     setIsSuccess(true);
     clearCart();
@@ -23,9 +50,14 @@ const CheckoutPage=()=> {
       <div className="py-20 text-center space-y-4">
         <h2 className="text-2xl font-bold">Order Confirmed!</h2>
         <p className="text-gray-500 text-sm">Thank you for shopping with us.</p>
-        <Link href="/products" className="inline-block bg-black text-white px-6 py-2 rounded-xl text-xs">
-          Back to Shopping
-        </Link>
+        <div className="flex justify-center gap-3">
+          <Link href="/products" className="inline-block bg-black text-white px-6 py-2 rounded-xl text-xs">
+            Back to Shopping
+          </Link>
+          <Link href="/orders" className="inline-block bg-[#0f172a] text-white px-6 py-2 rounded-xl text-xs">
+            View My Orders
+          </Link>
+        </div>
       </div>
     );
   }
@@ -35,10 +67,10 @@ const CheckoutPage=()=> {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-2xl border">
         <h2 className="text-lg font-bold">Shipping Address</h2>
-        <input required placeholder="Full Name" className="w-full p-2.5 text-xs border rounded-lg" />
-        <input required type="email" placeholder="Email" className="w-full p-2.5 text-xs border rounded-lg" />
-        <input required placeholder="Phone (e.g. 017...)" className="w-full p-2.5 text-xs border rounded-lg" />
-        <textarea required placeholder="Full Address" rows={3} className="w-full p-2.5 text-xs border rounded-lg" />
+        <input required name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" className="w-full p-2.5 text-xs border rounded-lg" />
+        <input required type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="w-full p-2.5 text-xs border rounded-lg" />
+        <input required name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone (e.g. 017...)" className="w-full p-2.5 text-xs border rounded-lg" />
+        <textarea required name="address" value={formData.address} onChange={handleChange} placeholder="Full Address" rows={3} className="w-full p-2.5 text-xs border rounded-lg" />
         <button type="submit" className="w-full bg-slate-900 text-white py-3 rounded-xl text-xs font-bold">
           Place Order 
         </button>
@@ -63,6 +95,6 @@ const CheckoutPage=()=> {
       </div>
     </div>
   );
-}
+};
 
 export default CheckoutPage;
