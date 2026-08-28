@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Trash2, ShoppingBag, ArrowLeft, ArrowRight } from "lucide-react";
-import { useWishlist, WishlistItem } from "@/context/WishListContext";
-import { useCart } from "@/context/CartContext";
+import { Heart, ArrowLeft, ArrowRight } from "lucide-react";
+import { useWishlist } from "@/context/WishListContext";
 import { DeleteAllWishlistModal } from "@/components/wishlist/DeleteAllwishlistModal";
 import { MoveToCartAllItemModal } from "@/components/wishlist/MoveToCartAllItemModal";
 import { DeleteWishlistModal } from "@/components/wishlist/DeleteWishlistModal";
@@ -12,15 +11,7 @@ import { MoveToCartSingleItemModal } from "@/components/wishlist/MoveToCartSingl
 
 
 const WishlistPage = () => {
-  const { wishlist, removeFromWishlist } = useWishlist();
-  const { addToCart } = useCart();
-
-//handleMoveCart
-  const handleMoveToCart = (product: WishlistItem) => {
-    addToCart(product);
-    removeFromWishlist(product.id);
-  };
-
+  const { wishlist } = useWishlist();
 
 
   //Empty state Message
