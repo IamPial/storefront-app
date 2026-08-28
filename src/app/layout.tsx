@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StoreFront - Online Marketplace",
+  title: "Home - Storefront",
   description: "Storefront app is online marketplace.where user can buy their wishlist products.",
 };
 
