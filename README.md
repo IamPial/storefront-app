@@ -5,14 +5,13 @@
 
 ##  Live Website
 
-**Live URL:** [https://storefront-online-app.vercel.app](https://storefront-online-app.vercel.app)
+**Live URL:**  [https://storefront-online-app.vercel.app](https://storefront-online-app.vercel.app)
 
 
 
 ---
 
 ##  Project Overview
-
 
 StoreFront is a modern, responsive e-commerce online marketplace designed to provide customers with a smooth and engaging shopping experience. The platform allows users to browse products, explore categories, search and filter items, view detailed product information, manage their cart and wishlist, complete the checkout process, and track their orders.
 
@@ -30,6 +29,18 @@ The project implements all eight flows requested in the assessment:
 * Wishlist
 
 ---
+
+---
+
+#  Screenshots
+
+### Home Page
+
+![Home](/src/assets/home.png)
+
+---
+
+
 
 ##  Features
 
