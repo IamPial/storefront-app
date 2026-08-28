@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Trash2, Plus, Minus } from "lucide-react";
 import { CartItem, useCart } from "@/context/CartContext";
+import { DeleteCartItem } from "./DeleteCartItem";
 
 const CartItemCard=({ item }: { item: CartItem })=> {
   const { updateQuantity, removeFromCart } = useCart();
@@ -62,13 +63,8 @@ const CartItemCard=({ item }: { item: CartItem })=> {
           </span>
         </div>
 
-        {/* Remove Button */}
-        <button
-          onClick={() => removeFromCart(item.id)}
-          className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition-colors"
-        >
-          <Trash2 className="w-4 h-4" />
-        </button>
+        {/* Remove Button */}      
+          <DeleteCartItem item={item}/>
       </div>
     </div>
   );
