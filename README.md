@@ -5,7 +5,7 @@
 
 ##  Live Website
 
-**Live URL:** [http](https://storefront-online-app.vercel.app)
+**Live URL:** [https://storefront-online-app.vercel.app](https://storefront-online-app.vercel.app)
 
 
 
