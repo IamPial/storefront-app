@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { Trash2, Plus, Minus } from "lucide-react";
+import {  Plus, Minus } from "lucide-react";
 import { CartItem, useCart } from "@/context/CartContext";
 import { DeleteCartItem } from "./DeleteCartItem";
 
 const CartItemCard=({ item }: { item: CartItem })=> {
-  const { updateQuantity, removeFromCart } = useCart();
+  const { updateQuantity} = useCart();
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 gap-4 transition-all">
