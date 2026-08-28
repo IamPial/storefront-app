@@ -8,7 +8,7 @@ import OrderSummary from "@/components/cart/OrderSummary";
 import { DeleteAllCart } from "@/components/cart/DeleteAllCart";
 
 const CartPage=()=> {
-  const { cart, clearCart } = useCart();
+  const { cart } = useCart();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-10 px-4 sm:px-6 lg:px-8">
@@ -25,14 +25,7 @@ const CartPage=()=> {
             </p>
           </div>
 
-          {/* {cart.length > 0 && (
-            <button
-              onClick={clearCart}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-600 transition-colors"
-            >
-              <Trash2 className="w-4 h-4" /> Clear Cart
-            </button>
-          )} */}
+          
           <DeleteAllCart/>
         </div>
 
