@@ -28,7 +28,6 @@ The project implements all eight flows requested in the assessment:
 * Order Tracking
 * Wishlist
 
----
 
 ---
 
