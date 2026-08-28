@@ -13,7 +13,9 @@ export function DeleteCartItem({ item }: { item: CartItem }) {
     const handleDelete = (id:string)=>{
         if(item.id === id){
            removeFromCart(item.id)
-           toast.success("CartItem Deleted!")
+           toast.success("CartItem Deleted!",{
+    style: { color: "#00c950" },
+  })
         }
     }
   return (
