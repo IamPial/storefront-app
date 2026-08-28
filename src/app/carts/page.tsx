@@ -25,7 +25,7 @@ const CartPage=()=> {
             </p>
           </div>
 
-          
+          {/*Delete Cart Modal*/}    
           <DeleteAllCart/>
         </div>
 
