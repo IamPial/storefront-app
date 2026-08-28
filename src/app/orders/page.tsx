@@ -72,7 +72,7 @@ const  MyOrdersPage=()=> {
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">My Orders</h1>
           <p className="text-xs text-gray-500">Track and view your recent order history</p>
           </div>
-          <Link href="/order-tracking" className="bg-[#0f172a] border">Track Order</Link>
+          <Link href="/order-tracking" className="bg-[#0f172a] border text-white rounded-lg px-3 py-1">Track Order</Link>
         </div>
         
 
