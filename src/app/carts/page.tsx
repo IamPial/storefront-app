@@ -5,6 +5,7 @@ import { ShoppingCart, ArrowLeft, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import CartItemCard from "@/components/cart/CartItemCard";
 import OrderSummary from "@/components/cart/OrderSummary";
+import { DeleteAllCart } from "@/components/cart/DeleteAllCart";
 
 const CartPage=()=> {
   const { cart, clearCart } = useCart();
@@ -24,14 +25,15 @@ const CartPage=()=> {
             </p>
           </div>
 
-          {cart.length > 0 && (
+          {/* {cart.length > 0 && (
             <button
               onClick={clearCart}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-600 transition-colors"
             >
               <Trash2 className="w-4 h-4" /> Clear Cart
             </button>
-          )}
+          )} */}
+          <DeleteAllCart/>
         </div>
 
         {/* Empty State */}
