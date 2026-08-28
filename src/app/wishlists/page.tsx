@@ -5,9 +5,14 @@ import Link from "next/link";
 import { Heart, Trash2, ShoppingBag, ArrowLeft, ArrowRight } from "lucide-react";
 import { useWishlist, WishlistItem } from "@/context/WishListContext";
 import { useCart } from "@/context/CartContext";
+import { DeleteAllWishlistModal } from "@/components/wishlist/DeleteAllwishlistModal";
+import { MoveToCartAllItemModal } from "@/components/wishlist/MoveToCartAllItemModal";
+import { DeleteWishlistModal } from "@/components/wishlist/DeleteWishlistModal";
+import { MoveToCartSingleItemModal } from "@/components/wishlist/MoveToCartSingleItemModal";
+
 
 const WishlistPage = () => {
-  const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
+  const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
 
 //handleMoveCart
@@ -16,11 +21,7 @@ const WishlistPage = () => {
     removeFromWishlist(product.id);
   };
 
- //handleMoveAllToCart
-  const handleMoveAllToCart = () => {
-    wishlist.forEach((product) => addToCart(product));
-    clearWishlist();
-  };
+
 
   //Empty state Message
   if (wishlist.length === 0) {
@@ -66,18 +67,12 @@ const WishlistPage = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={clearWishlist}
-              className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-            >
-              Clear All
-            </button>
-            <button
-              onClick={handleMoveAllToCart}
-              className="px-4 py-2.5 rounded-xl bg-[#4f46e5] hover:bg-[#4338ca] text-white text-xs font-semibold flex items-center gap-2 transition-colors shadow-md shadow-indigo-500/10"
-            >
-              <ShoppingBag className="w-4 h-4" /> Move All to Cart
-            </button>
+            {/* delete modal*/}
+            <DeleteAllWishlistModal/>
+      
+            {/*move to cart modal*/}
+            <MoveToCartAllItemModal/>
+
           </div>
         </div>
 
@@ -100,13 +95,8 @@ const WishlistPage = () => {
                 </div>
 
                 {/* Remove Button Badge */}
-                <button
-                  onClick={() => removeFromWishlist(item.id)}
-                  aria-label="Remove item"
-                  className="absolute top-3 right-3 p-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md text-gray-500 hover:text-red-500 rounded-full transition-colors shadow-sm"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+             
+                <DeleteWishlistModal item={item}/>
 
                 {/* Tag Badge */}
                 {item.tag && (
@@ -140,12 +130,8 @@ const WishlistPage = () => {
                 </div>
 
                 {/* Move to Cart Action Button */}
-                <button
-                  onClick={() => handleMoveToCart(item)}
-                  className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs transition-all active:scale-[0.98]"
-                >
-                  <ShoppingBag className="w-4 h-4" /> Move to Cart
-                </button>
+                
+                <MoveToCartSingleItemModal item={item}/>
               </div>
             </div>
           ))}
